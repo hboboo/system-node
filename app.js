@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+
 //跨域中间件
 const cors = require('cors')
 app.use(cors())
@@ -13,6 +14,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // 把json转变成js对象
 app.use(bodyParser.json())
+
+const loginRouter = require('./router/login')
+app.use('/api',loginRouter)
+
+
 
 app.listen(port, () => {
   console.log(`已连接 ${port}`)

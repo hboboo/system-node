@@ -1,5 +1,5 @@
 const db = require('../db/index')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 
 const register = async(req, res) => {
@@ -18,8 +18,8 @@ const register = async(req, res) => {
     }
 
     //密码加密
-    const saltRounds = 10
-    const hashedPassword = await bcrypt.hash(password, saltRounds)
+    const salt = bcrypt.genSaltSync(10)
+    const hashedPassword = await bcrypt.hashSync(password, salt)
 
     //插入用户
     const insertResult = await db.query('insert into users set ?', {

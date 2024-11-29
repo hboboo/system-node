@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
 
 const db = mysql.createPool({
   host     : 'localhost',
@@ -8,14 +8,20 @@ const db = mysql.createPool({
 })
 
 // 添加数据库连接测试
-db.getConnection((err, connection) => {
-  if (err) {
-    console.error(' 数据库连接失败:', err.message);
-  } else {
+async function testConnection() {
+  try {
+    const connection = await db.getConnection();
     console.log('数据库连接成功!');
-    // 连接测试完成后立即释放连接
     connection.release();
+  } catch (err) {
+    console.error('数据库连接失败:', err.message);
   }
-});
+}
+
+// 执行连接测试
+testConnection();
+
+
+
 
 module.exports = db

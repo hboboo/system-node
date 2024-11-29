@@ -14,8 +14,11 @@
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.1",
+    "express-joi-validation": "^5.0.1",
+    "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.5"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
